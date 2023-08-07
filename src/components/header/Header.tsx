@@ -44,7 +44,11 @@ function Header({service}: { service: GlobalService }) {
         if (found) {
             setQuery(found.name);
             setOptions([]);
-            service.setLocationAndFetch(found);
+            service.setLocationAndFetch(found).then(() => {
+                if (!service.setRefresh) return;
+                service.loading = false;
+                service.setRefresh(!service.refresh);
+            });
             return setFormLoading(false);
         } else {
             setQuery(value);

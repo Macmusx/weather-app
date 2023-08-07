@@ -5,8 +5,6 @@ export default function TodayBrief(props: { service: GlobalService }) {
     if (!service || !service.currentForecast) return <>Something went wrong!</>;
     const currentForecast = service.currentForecast;
 
-    console.log(currentForecast);
-
     return (<div className="max-w-2xl rounded-2xl overflow-hidden shadow-lg m-5 sm:max-w-[10rem] bg-white">
         <>
             <img className="w-[5rem] m-auto mt-3" src={require('../../images/weather/' + currentForecast.weatherIcon)}

@@ -12,16 +12,19 @@ function App(props: { service: GlobalService }) {
 
     useEffect(() => {
         if (service.loadCurrentLocationOnStart) {
+            console.log('Loading current location...')
             service.getIp().then(
-                () => service.getLocationByIp().then(
-                    () => {
-                        service.loading = false;
-                    }
-                )
+                () => {
+                    console.log('Current location loaded; refreshing.')
+                    if (!service.setRefresh) return;
+                    service.loading = false;
+                    service.setRefresh(!service.refresh);
+                }
             );
         } else {
+            if (!service.setRefresh) return;
             service.loading = false;
-            setRefresh(true);
+            service.setRefresh(true);
         }
     }, []);
 
@@ -31,7 +34,7 @@ function App(props: { service: GlobalService }) {
         <>
             <Header service={service}/>
             {
-                service.location ? (
+                service.currentForecast ? (
                     <Weather service={service}/>
                 ) : null
             }

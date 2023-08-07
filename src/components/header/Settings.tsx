@@ -94,7 +94,7 @@ export function Settings(props: { service: GlobalService }) {
                                             onClick={() => setOpen(false)}
                                             ref={cancelButtonRef}
                                         >
-                                            Cancel
+                                            Close
                                         </button>
                                     </div>
                                 </Dialog.Panel>
