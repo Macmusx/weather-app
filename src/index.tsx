@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {GlobalService} from "./services/GlobalService";
 import App from "./App";
+import {GlobalService} from "./classes/GlobalService";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

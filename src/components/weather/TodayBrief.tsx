@@ -1,30 +1,20 @@
-import {GlobalService} from "../../services/GlobalService";
-import '../../styles/weather/TodayBrief.scss';
+import {GlobalService} from "../../classes/GlobalService";
 
 export default function TodayBrief(props: { service: GlobalService }) {
-    const location = props.service.location;
-    const current = props.service.currentForecast;
-    if (!location || !current) return <>Something went wrong!</>;
+    const service = props.service;
+    if (!service || !service.currentForecast) return <>Something went wrong!</>;
+    const currentForecast = service.currentForecast;
 
-    let image = '';
+    console.log(currentForecast);
 
-    if (current.is_day) {
-        if (current.condition.code === 1000) image = 'sun.png';
-        else if (current.condition.code === 1003) image = 'sunny.png';
-        else if (current.condition.code === 1006) image = '';
-    } else {
-        if (current.condition.code === 1000) image = 'clear_moon.png';
-        else if (current.condition.code === 1003) image = 'half-moon.png';
-        else if (current.condition.code === 1006) image = '';
-    }
-
-    return (<div className="max-w-[10rem] rounded overflow-hidden shadow-lg m-5">
+    return (<div className="max-w-2xl rounded-2xl overflow-hidden shadow-lg m-5 sm:max-w-[10rem] bg-white">
         <>
-            <img className="w-[5rem] m-auto mt-3" src={require('../../images/weather/' + image)}
-                 alt="Clear Moon"/>
-            <div className="font-bold text-4xl text-center mt-4">{current.temp_c}°C</div>
+            <img className="w-[5rem] m-auto mt-3" src={require('../../images/weather/' + currentForecast.weatherIcon)}
+                 alt="Weather logo"/>
+            <div className="text-center mt-4">{currentForecast.currentConditionMessage}</div>
+            <div className="font-bold text-4xl text-center">{currentForecast.temp}</div>
             <div className="text-center">Feels like</div>
-            <div className="text-center mb-2">{current.feelslike_c}°C</div>
+            <div className="text-center mb-2">{currentForecast.feelslike}</div>
         </>
     </div>)
 }

@@ -47,7 +47,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "latest",
-    "@types/lodash": "^4.14.196",
-    "sass": "^1.64.2"
+    "@types/lodash": "^4.14.196"
   }
 }
