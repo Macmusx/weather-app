@@ -24,7 +24,7 @@ export default function TodayBrief(props: { service: GlobalService }) {
                  alt="Clear Moon"/>
             <div className="font-bold text-4xl text-center mt-4">{current.temp_c}°C</div>
             <div className="text-center">Feels like</div>
-            <div className="text-center mb-2">{current.feelslike_c} °C</div>
+            <div className="text-center mb-2">{current.feelslike_c}°C</div>
         </>
     </div>)
 }
