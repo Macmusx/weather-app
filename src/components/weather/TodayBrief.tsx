@@ -5,7 +5,8 @@ export default function TodayBrief(props: { service: GlobalService }) {
     if (!service || !service.currentForecast) return <>Something went wrong!</>;
     const currentForecast = service.currentForecast;
 
-    return (<div className="max-w-2xl rounded-2xl overflow-hidden shadow-lg m-5 sm:max-w-[30rem] bg-white">
+    return (<div
+        className="flex-auto min-w-[18rem] flex-wrap max-w-2xl rounded-2xl shadow-lg m-5 sm:max-w-[30rem] bg-white">
         <>
             <div className='flex justify-evenly items-center'>
                 <div className='min-w-[8rem]'>

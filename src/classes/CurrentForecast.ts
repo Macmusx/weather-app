@@ -1,13 +1,38 @@
-import {CurrentForecastDto} from "../interfaces/CurrentForecastDto";
 import {GlobalService} from "./GlobalService";
+import {AirQuality, AirQualityDto} from "./AirQuality";
+import {Condition, ConditionDto} from "./Condition";
+import {ForecastShared} from "./ForecastShared";
 
-export class CurrentForecast {
-    private readonly _air_quality: {};
-    private readonly _condition: {
-        text: string,
-        icon: string,
-        code: number
-    };
+export interface CurrentForecastDto {
+    air_quality: AirQualityDto;
+    cloud: number;
+    condition: ConditionDto;
+    feelslike_c: number;
+    feelslike_f: number;
+    gust_kph: number;
+    gust_mph: number;
+    humidity: number;
+    is_day: number;
+    last_updated: string;
+    last_updated_epoch: number;
+    precip_in: number;
+    precip_mm: number;
+    pressure_in: number;
+    pressure_mb: number;
+    temp_c: number;
+    temp_f: number;
+    uv: number;
+    vis_km: number;
+    vis_miles: number;
+    wind_degree: number;
+    wind_dir: string;
+    wind_kph: number;
+    wind_mph: number;
+}
+
+export class CurrentForecast extends ForecastShared {
+    private readonly _air_quality: AirQuality;
+    private readonly _condition: Condition;
     private readonly _feelslike_c: number;
     private readonly _feelslike_f: number;
     private readonly _gust_kph: number;
@@ -31,10 +56,11 @@ export class CurrentForecast {
     private readonly _humidity: number;
     private readonly _uv: number;
 
-    constructor(dto: CurrentForecastDto, private readonly engine: GlobalService) {
-        this._air_quality = dto.air_quality;
+    constructor(dto: CurrentForecastDto, engine: GlobalService) {
+        super(engine);
+        this._air_quality = new AirQuality(dto.air_quality, engine);
         this._cloud = dto.cloud;
-        this._condition = dto.condition;
+        this._condition = new Condition(dto.condition, engine);
         this._feelslike_c = dto.feelslike_c;
         this._feelslike_f = dto.feelslike_f;
         this._gust_kph = dto.gust_kph;
@@ -56,8 +82,6 @@ export class CurrentForecast {
         this._wind_dir = dto.wind_dir;
         this._wind_kph = dto.wind_kph;
         this._wind_mph = dto.wind_mph;
-
-        console.log(this);
     }
 
     get cloud() {
@@ -73,11 +97,11 @@ export class CurrentForecast {
     }
 
     get temp() {
-        return this.engine.unit === 'Metric' ? `${this._temp_c}°C` : `${this._temp_f}°F`;
+        return super.getTemp(this._temp_c, this._temp_f);
     }
 
     get feelslike() {
-        return this.engine.unit === 'Metric' ? `${this._feelslike_c}°C` : `${this._feelslike_f}°F`;
+        return super.getFeelsLike(this._feelslike_c, this._feelslike_f);
     }
 
     get day() {
@@ -88,30 +112,23 @@ export class CurrentForecast {
         return this._condition.text;
     }
 
+    get weatherIcon() {
+        return super.getWeatherIcon(this._condition.code, this.day);
+    }
+
     get wind() {
-        return this.engine.unit === 'Metric' ? `${this._wind_kph} km/h` : `${this._wind_mph} mph`;
+        return super.getWind(this._wind_kph, this._wind_mph);
     }
 
     get pressure() {
-        return this.engine.unit === 'Metric' ? `${this._pressure_mb} mb` : `${this._pressure_in} in`;
+        return super.getPressure(this._pressure_mb, this._pressure_in);
     }
 
     get visibility() {
-        return this.engine.unit === 'Metric' ? `${this._vis_km} km` : `${this._vis_miles} miles`;
+        return super.getVisibility(this._vis_km, this._vis_miles);
     }
 
     get precipitation() {
-        return this.engine.unit === 'Metric' ? `${this._precip_mm} mm` : `${this._precip_in} in`;
-    }
-
-    get weatherIcon() {
-        switch (this._condition.code) {
-            case 1000:
-                return this.day ? 'sun.png' : 'clear_moon.png';
-            case 1003:
-                return this.day ? 'sunny.png' : 'half-moon.png';
-            default:
-                return 'nothing.png';
-        }
+        return super.getPrecipitation(this._precip_mm, this._precip_in);
     }
 }

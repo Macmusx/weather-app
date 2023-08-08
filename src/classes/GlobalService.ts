@@ -1,8 +1,8 @@
 import React from "react";
 import {LocationDto} from "../interfaces/LocationDto";
 import {apiKey} from "../apiKey";
-import {CurrentForecast} from "./CurrentForecast";
-import {CurrentForecastDto} from "../interfaces/CurrentForecastDto";
+import {CurrentForecast, CurrentForecastDto} from "./CurrentForecast";
+import {Forecast, ForecastDto} from "./Forecast";
 
 export type Unit = 'Imperial' | 'Metric';
 
@@ -10,10 +10,12 @@ export class GlobalService {
     refresh: boolean | undefined;
     setRefresh: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 
-    loading: boolean;
-    location: LocationDto | null;
-    currentForecast: CurrentForecast | null;
+    loading: boolean = true;
+    location: LocationDto | null = null;
     unit: Unit = 'Metric';
+
+    currentForecast: CurrentForecast | null = null;
+    forecast: Forecast | null = null;
 
     loadCurrentLocationOnStart: boolean = true;
     persistSettings: boolean = true;
@@ -22,9 +24,6 @@ export class GlobalService {
 
     constructor() {
         this.setup();
-        this.loading = true;
-        this.location = null;
-        this.currentForecast = null;
 
         this.persistSettings = localStorage.getItem('persistSettings') === 'true';
         if (this.persistSettings) {
@@ -88,9 +87,10 @@ export class GlobalService {
         if (!this.location) return;
         if (!this.setRefresh) return;
         const result = await (await
-            fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${this.location.name}&aqi=yes`))
-            .json() as { current: CurrentForecastDto };
+            fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${this.location.name}&days=3&aqi=yes&alerts=yes`))
+            .json() as { current: CurrentForecastDto, forecast: ForecastDto };
 
+        this.forecast = new Forecast(result.forecast, this);
         this.currentForecast = new CurrentForecast(result.current, this);
     }
 
