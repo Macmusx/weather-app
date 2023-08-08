@@ -66,21 +66,16 @@ export class GlobalService {
     }
 
     async getIp() {
-        console.log('Called getIp');
         const result = await (await fetch('https://api.ipify.org?format=json')).json();
         this.ip = result.ip;
         await this.getLocationByIp();
-        console.log('Finished getIp')
     }
 
     async getLocationByIp() {
-        console.log('Called getLocationByIp')
         const result = await (await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${this.ip}&aqi=yes`)).json();
 
         this.location = result.location;
         await this.getCurrentForecast();
-
-        console.log('Finished getLocationByIp')
     }
 
     async setLocationAndFetch(location: LocationDto) {
@@ -90,8 +85,6 @@ export class GlobalService {
     }
 
     async getCurrentForecast() {
-        console.log('Called getCurrentForecast')
-        console.log(this.location, this.setRefresh);
         if (!this.location) return;
         if (!this.setRefresh) return;
         const result = await (await
@@ -99,7 +92,6 @@ export class GlobalService {
             .json() as { current: CurrentForecastDto };
 
         this.currentForecast = new CurrentForecast(result.current, this);
-        console.log('Finished getCurrentForecast')
     }
 
     private setup() {

@@ -12,10 +12,8 @@ function App(props: { service: GlobalService }) {
 
     useEffect(() => {
         if (service.loadCurrentLocationOnStart) {
-            console.log('Loading current location...')
             service.getIp().then(
                 () => {
-                    console.log('Current location loaded; refreshing.')
                     if (!service.setRefresh) return;
                     service.loading = false;
                     service.setRefresh(!service.refresh);
