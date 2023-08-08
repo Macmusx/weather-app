@@ -4,7 +4,7 @@ import {apiKey} from "../apiKey";
 import {CurrentForecast} from "./CurrentForecast";
 import {CurrentForecastDto} from "../interfaces/CurrentForecastDto";
 
-export type Unit = 'C' | 'F';
+export type Unit = 'Imperial' | 'Metric';
 
 export class GlobalService {
     refresh: boolean | undefined;
@@ -13,7 +13,7 @@ export class GlobalService {
     loading: boolean;
     location: LocationDto | null;
     currentForecast: CurrentForecast | null;
-    unit: Unit = 'C';
+    unit: Unit = 'Metric';
 
     loadCurrentLocationOnStart: boolean = true;
     persistSettings: boolean = true;
@@ -29,7 +29,7 @@ export class GlobalService {
         this.persistSettings = localStorage.getItem('persistSettings') === 'true';
         if (this.persistSettings) {
             const unit = localStorage.getItem('unit');
-            if (unit === 'C' || unit === 'F')
+            if (unit === 'Metric' || unit === 'Imperial')
                 this.unit = unit;
             this.loadCurrentLocationOnStart = localStorage.getItem('loadCurrentLocationOnStart') === 'true';
         }

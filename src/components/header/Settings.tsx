@@ -49,8 +49,8 @@ export function Settings(props: { service: GlobalService }) {
                                                     value={props.service.unit}
                                                     onChange={(e) => props.service.setUnit(e.target.value as Unit)}
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                                <option value="C">C</option>
-                                                <option value="F">F</option>
+                                                <option value="Metric">Metric</option>
+                                                <option value="Imperial">Imperial</option>
                                             </select>
                                         </div>
                                         <div className='flex items-center mt-5 w-full justify-around'>
