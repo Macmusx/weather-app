@@ -11,7 +11,7 @@ export default function TodayBrief(props: { service: GlobalService }) {
             <div className='flex justify-evenly items-center'>
                 <div className='min-w-[8rem]'>
                     <img className="w-[5rem] m-auto mt-3"
-                         src={require('../../images/weather/' + currentForecast.weatherIcon)}
+                         src={'/images/weather/' + currentForecast.weatherIcon}
                          alt="Weather logo"/>
                     <div className="text-center mt-4">{currentForecast.currentConditionMessage}</div>
                     <div className="font-bold text-3xl text-center">{currentForecast.temp}</div>

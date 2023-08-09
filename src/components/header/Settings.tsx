@@ -10,7 +10,7 @@ export function Settings(props: { service: GlobalService }) {
     return (
         <>
             <div className='ml-2 w-8 h-8'>
-                <img src={require('../../images/settings.png')} alt="Settings" className='cursor-pointer'
+                <img src="/images/settings.png" alt="Settings" className='cursor-pointer'
                      onClick={() => setOpen(true)}/>
             </div>
             <Transition.Root show={open} as={Fragment}>

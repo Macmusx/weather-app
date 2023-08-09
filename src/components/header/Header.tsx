@@ -68,7 +68,7 @@ function Header({service}: { service: GlobalService }) {
                         <div className="flex flex-shrink-0 items-center">
                             <img
                                 className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                                src="/images/weather-news.png"
                                 alt="Your Company"
                             />
                         </div>
@@ -83,7 +83,7 @@ function Header({service}: { service: GlobalService }) {
                                     focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2
                                     focus-visible:ring-offset-teal-300 sm:text-sm">
                             <Combobox.Input
-                                className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 outline-none"
+                                className="w-full border-none py-2 pl-3 pr-10 leading-5 text-gray-900 focus:ring-0 outline-none text-lg"
                                 value={query}
                                 onChange={handleChange}
                             />

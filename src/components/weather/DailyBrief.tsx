@@ -16,7 +16,7 @@ export function DailyBrief(props: { service: GlobalService }) {
                     <>
                         <div key={dayDetails.epoch} className='min-w-[8rem]'>
                             <img className="w-[5rem] m-auto mt-3"
-                                 src={require('../../images/weather/' + dayDetails.day.weatherIcon)}
+                                 src={'/images/weather/' + dayDetails.day.weatherIcon}
                                  alt="Weather logo"/>
                             <div className='text-center mt-4'>{dayDetails.dateMessageRelativeToToday}</div>
                             <div className="text-center">{dayDetails.day.currentConditionMessage}</div>
