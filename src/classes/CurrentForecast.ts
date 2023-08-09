@@ -131,4 +131,8 @@ export class CurrentForecast extends ForecastShared {
     get precipitation() {
         return super.getPrecipitation(this._precip_mm, this._precip_in);
     }
+
+    get airQuality() {
+        return this._air_quality;
+    }
 }

@@ -31,4 +31,38 @@ export class AirQuality {
         this._pm2_5 = airQuality.pm2_5;
         this._us_epa_index = airQuality.us_epa_index;
     }
+
+    get co(): number {
+        return this._co;
+    }
+
+    get so2(): number {
+        return this._so2;
+    }
+
+    get gb_defra_index(): number {
+        return this._gb_defra_index;
+    }
+
+    get no2(): number {
+        return this._no2;
+    }
+
+    get o3(): number {
+        return this._o3;
+    }
+
+    get pm10(): number {
+        return this._pm10;
+    }
+
+    get pm2_5(): number {
+        return this._pm2_5;
+    }
+
+    get us_epa_index(): number {
+        return this._us_epa_index;
+    }
+
+
 }

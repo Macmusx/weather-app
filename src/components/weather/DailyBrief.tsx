@@ -20,7 +20,7 @@ export function DailyBrief(props: { service: GlobalService }) {
                                  alt="Weather logo"/>
                             <div className='text-center mt-4'>{dayDetails.dateMessageRelativeToToday}</div>
                             <div className="text-center">{dayDetails.day.currentConditionMessage}</div>
-                            <div className="font-bold text-4xl text-center">{dayDetails.day.temp}</div>
+                            <div className="font-bold text-3xl text-center">{dayDetails.day.temp}</div>
                         </div>
 
                         {
