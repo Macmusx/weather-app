@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+By [Lucian Barcan](https://www.lucianbarcan.com)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+The application represents a weather app that displays the weather for the current location of the user.
+The user can also search for a city and see the weather for that city. The application uses the OpenWeatherMap API to
+fetch the weather data. The application is built using React and Tailwind CSS.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Display the weather for the current location.
+- Search for a city.
+- Display the weather for the searched city.
+- Display the weather for the current day and the following 2 days (limited by the free API).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Upcoming Features
 
-### `npm test`
+- Display the air quality for the current location.
+- Display the air quality for the searched city.
+- Display the air quality for the current day and the following 2 days.
+- Display the forecast based on hours for the current day and the following 2 days
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the project
 
-### `npm run build`
+#### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository
+2. Add the file `apiKey.ts` to the root folder. It should contain:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```typescript
+export const apiKey = 'your key';
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Run `npm install`
 
-### `npm run eject`
+#### Development
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Run `npm start` to start the local server and view it in the browser [http://localhost:3000](http://localhost:3000).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Run `npm run build` to build the project for production. The build folder will be created in the root folder.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Attribution
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a href="https://www.flaticon.com/" title="icons">Icons created by Vectors Market - Flaticon</a>
