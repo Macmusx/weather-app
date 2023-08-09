@@ -1,7 +1,6 @@
 import React, {Fragment, useCallback, useEffect, useState} from 'react'
 import {Combobox, Disclosure, Transition} from '@headlessui/react'
 import {debounce} from "lodash";
-import {MagnifyingGlassIcon} from '@heroicons/react/20/solid'
 import {LocationDto} from "../../interfaces/LocationDto";
 import {apiKey} from "../../apiKey";
 import {GlobalService} from "../../classes/GlobalService";
@@ -83,14 +82,6 @@ function Header({service}: { service: GlobalService }) {
                                     bg-white text-left shadow-md focus:outline-none focus:border-none
                                     focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2
                                     focus-visible:ring-offset-teal-300 sm:text-sm">
-
-                            <Combobox.Button
-                                className="absolute inset-y-0 right-0 flex items-center pr-2  focus:border-none">
-                                <MagnifyingGlassIcon
-                                    className="h-5 w-5 text-gray-400"
-                                    aria-hidden="true"
-                                />
-                            </Combobox.Button>
                             <Combobox.Input
                                 className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 outline-none"
                                 value={query}
